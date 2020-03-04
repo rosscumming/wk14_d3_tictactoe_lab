@@ -52,10 +52,6 @@ class BoardContainer extends Component {
         if (this.activePlayer === "X") {
           return <p> {this.activePlayer === "X" ? "x" : "o"} </p>;
         }
-        // else {
-        //   document.getElementsByClassName("toggle-player-2")[0].innerHtml =
-        //     "fjfjf";
-        // }
       }
     });
   }
