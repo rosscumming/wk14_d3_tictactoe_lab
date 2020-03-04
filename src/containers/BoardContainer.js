@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Square from "../components/Square.js";
 import "./BoardContainer.css";
+import "../components/Square.css";
 
 class BoardContainer extends Component {
   constructor(props) {
@@ -10,11 +11,18 @@ class BoardContainer extends Component {
       board: [
         { id: 1, value: null },
         { id: 2, value: null },
-        { id: 3, value: null }
+        { id: 3, value: null },
+        { id: 4, value: null },
+        { id: 5, value: null },
+        { id: 6, value: null },
+        { id: 7, value: null },
+        { id: 8, value: null },
+        { id: 9, value: null }
       ],
-      activePlayer: 1
+      activePlayer: "X"
     };
-    this.onSquareSelected = this.onSquareSelected.bind(this);
+    this.nodemonBanana = this.takeSquare.bind(this);
+    // this.changeActivePlayer = this.changeActivePlayer.bind(this);
   }
 
   takeSquare(squareId) {
@@ -26,21 +34,31 @@ class BoardContainer extends Component {
       }
     });
     this.setState({ board: boardArray });
-    this.changeActivePlayer()
-  }
-}
-
-changeActivePlayer() {
-  
-  if (this.state.activePlayer === 1) {
-    this.setState({ activePlayer: 2 });
-  } else {
-    this.setState({ activePlayer: 1 });
+    this.addCrossOrNought(squareId);
+    this.changeActivePlayer();
   }
 
-  this.setState({ board: boardArray });
-}
+  changeActivePlayer() {
+    if (this.state.activePlayer === "X") {
+      this.setState({ activePlayer: "O" });
+    } else {
+      this.setState({ activePlayer: "X" });
+    }
+  }
 
+  addCrossOrNought(squareId) {
+    this.state.board.forEach(square => {
+      if (square.id === squareId) {
+        if (this.activePlayer === "X") {
+          return <p> {this.activePlayer === "X" ? "x" : "o"} </p>;
+        }
+        // else {
+        //   document.getElementsByClassName("toggle-player-2")[0].innerHtml =
+        //     "fjfjf";
+        // }
+      }
+    });
+  }
 
   render() {
     return (
@@ -49,11 +67,39 @@ changeActivePlayer() {
         <section className="board">
           <Square
             square={this.state.board[0]}
-            selectedSquare={this.takeSquare}
+            onSquareSelected={this.nodemonBanana}
           />
           <Square
             square={this.state.board[1]}
-            onSquareSelected={this.takeSquare}
+            onSquareSelected={this.nodemonBanana}
+          />
+          <Square
+            square={this.state.board[2]}
+            onSquareSelected={this.nodemonBanana}
+          />
+          <Square
+            square={this.state.board[3]}
+            onSquareSelected={this.nodemonBanana}
+          />
+          <Square
+            square={this.state.board[4]}
+            onSquareSelected={this.nodemonBanana}
+          />
+          <Square
+            square={this.state.board[5]}
+            onSquareSelected={this.nodemonBanana}
+          />
+          <Square
+            square={this.state.board[6]}
+            onSquareSelected={this.nodemonBanana}
+          />
+          <Square
+            square={this.state.board[7]}
+            onSquareSelected={this.nodemonBanana}
+          />
+          <Square
+            square={this.state.board[8]}
+            onSquareSelected={this.nodemonBanana}
           />
         </section>
       </Fragment>
